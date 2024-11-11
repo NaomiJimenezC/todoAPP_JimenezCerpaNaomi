@@ -8,6 +8,19 @@ const initialStateTodos = JSON.parse(localStorage.getItem("todos") || "[]");
 function App() {
     const [todos, setTodos] = useState(initialStateTodos);
     const [edit, setEdit] = useState(false);
+    const [currentTodo, setCurrentTodo] = useState(""); // stores the text of the currentTodo
+    const [currentTodoIndex, setCurrentTodoIndex] = useState(null);
+
+    const handleEditButton= (todoId)=> {
+        // console.log(todoId);
+        setEdit(true);
+        let currentEditTodo = todos.filter((todo) => todo.id === todoId);
+
+        setCurrentTodo(currentEditTodo[0].title);
+        setCurrentTodoIndex(currentEditTodo[0].id);
+        // let updatedTodoText = currentEditTodo;
+        // console.log('updatedTodoText', updatedTodoText);
+    }
 
     const ordenarTareas = (todos) => {
         return [...todos].sort((a, b) => {
@@ -27,7 +40,7 @@ function App() {
     };
 
     const handleEditTodo = () => {
-        setEdit(true);
+        edit ? setEdit(!edit) : setEdit(true);
     }
 
     const updateTodo = (id) => {
@@ -62,7 +75,14 @@ function App() {
             {edit &&
                 <div className="container mb-2 w-100 p-4">
                     <h1 className="my-4">Editando</h1>
-                    <EditForm></EditForm>
+                    <EditForm
+                        currentTodo={currentTodo}
+                        setCurrentTodo={setCurrentTodo}
+                        updateTodo={updateTodo}
+                        setIsEditing={setEdit}
+                    >
+
+                    </EditForm>
                     <Todos
                         todos={todos}
                         delTodo={delTodo}

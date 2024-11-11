@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Swal from "sweetalert2";
 
 const Formulario = ({ addTodo }) => {  // Corrección: recibe `addTodo` como una prop
-    const [todo, seTodo] = useState({
+    const [todo, setTodo] = useState({
         title: "",
         description: "",
         state: "",
@@ -21,7 +21,7 @@ const Formulario = ({ addTodo }) => {  // Corrección: recibe `addTodo` como una
 
     const handleChange = (event) => {
         const { name, value, checked, type } = event.target;
-        seTodo({
+        setTodo({
             ...todo,
             [name]: type === "checkbox" ? checked : value,
         });
@@ -34,7 +34,6 @@ const Formulario = ({ addTodo }) => {  // Corrección: recibe `addTodo` como una
                 icon: "error",
                 title: "Oops...",
                 text: "Falta completar los campos!",
-                footer: '<a href="#">¿Por qué tengo este problema?</a>'
             });
             return;
         }
@@ -50,7 +49,7 @@ const Formulario = ({ addTodo }) => {  // Corrección: recibe `addTodo` como una
             icon: "success"
         });
 
-        seTodo({ title: "", description: "", state: "", priority: false });  // Reset del formulario
+        setTodo({ title: "", description: "", state: "", priority: false });  // Reset del formulario
     };
 
     return (
