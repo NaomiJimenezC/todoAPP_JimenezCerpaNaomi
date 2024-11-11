@@ -42,7 +42,7 @@ const Formulario = ({ addTodo }) => {  // Corrección: recibe `addTodo` como una
         addTodo({
             id: Date.now(),
             ...todo,
-            state: todo.state === "completada" ? true : false,
+            state: todo.state === "completada",
         });
 
         Swal.fire({
