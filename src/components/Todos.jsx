@@ -1,7 +1,7 @@
 import React from 'react';
 import Todo from "./Todo.jsx";
 
-const Todos = ({todos,delTodo,updateTodo}) => {
+const Todos = ({todos,delTodo,updateTodo,editTodo}) => {
     return (
         <>
             <h2> Lista de tareas</h2>
@@ -13,6 +13,7 @@ const Todos = ({todos,delTodo,updateTodo}) => {
                               todo={todo}
                               delTodo={delTodo}
                               updateTodo = {updateTodo}
+                              handleEditTodo={editTodo}
                         />
                     ))
                 }

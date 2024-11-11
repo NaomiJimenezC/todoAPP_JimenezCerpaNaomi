@@ -1,7 +1,7 @@
 import React from 'react';
 
 // eslint-disable-next-line react/prop-types
-const Todo = ({todo,delTodo,updateTodo}) => {
+const Todo = ({todo,delTodo,updateTodo,handleEditTodo}) => {
     // eslint-disable-next-line react/prop-types
     const { id, title, description, state, priority } = todo;
     return (
@@ -24,6 +24,11 @@ const Todo = ({todo,delTodo,updateTodo}) => {
                                     updateTodo(id)
                                 }}
                             >Actualizar
+                            </button>
+                            <button
+                            className="btn btn-sm btn-dark"
+                            onClick={() => {handleEditTodo()}}>
+                                Editar
                             </button>
                         </div>
                     </div>
